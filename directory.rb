@@ -26,20 +26,12 @@ end
 #def print(students)
 #  puts "Student names beginning with: (Please enter a letter)"
 #  letter = gets.chomp
-def print_by_name_length(students)
-  puts "Names with maximum length of (please enter a number):"
-  max_length = gets.chomp
-  matching_students = 0
-  students.each do |student|
-    if student[:name].length <= max_length.to_i
-      puts "#{student[:name]} (#{student[:cohort]} cohort)"
-      matching_students += 1
-    else
-    end
+def print(students)
+  x = 0
+  while x < students.count
+    puts "#{students[x][:name]} (#{students[x][:cohort]})"
+    x += 1
   end
-  puts
-  puts "There are #{matching_students} students whose maximum name's length is #{max_length} characters."
-  puts
 end
 
 
@@ -52,5 +44,5 @@ end
 # nothing happens until we call the methods
 students = input_students
 print_header
-print_by_name_length(students)
+print(students)
 print_footer(students)
