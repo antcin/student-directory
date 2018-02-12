@@ -1,29 +1,50 @@
+#8.5
 def input_students
-  puts "Please enter the names of the students"
+  puts "Please enter the name of the student"
   puts "To finish, just hit return twice"
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.chomp.capitalize
+
+  if !name.empty?
+    more_info = info
+  end
   # while the name is not empty, repeat this code
   while !name.empty? do
-    # add the student hash to the array
-    students << {name: name, cohort: :november}
+  # add the student hash to the array
+    students << {name: name, cohort: :november, hobbies: more_info[:hobbies],
+                 country: more_info[:country], height: more_info[:height]}
     puts "Now we have #{students.count} students"
     # get another name from the user
-    name = gets.chomp
+    puts "Please enter the name of another student"
+    name = gets.chomp.capitalize
+    if !name.empty?
+      more_info = info
+    end
   end
   # return the array of students
   students
+end
+
+def info
+  puts "Enter the student's hobbies separated by a comma"
+  hobbies = gets.chomp
+  puts "Enter the student's country of origin"
+  country = gets.chomp.capitalize
+  puts "Enter the student's height"
+  height = gets.chomp.to_i
+  return {hobbies: hobbies, country: country, height: height}
 end
 
 def print_header
 puts "The students of Villains Academy"
 puts "-------------"
 end
+
 def print(students)
   students.each do |student|
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+    puts "Name: #{student[:name]} | Cohort: #{student[:cohort]} | Hobbies: #{student[:hobbies]} | Country of origin: #{student[:country]} | Height: #{student[:height]}"
   end
 end
 
