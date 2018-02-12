@@ -23,26 +23,34 @@ puts "The students of Villains Academy"
 puts "-------------"
 end
 
-def print(students)
-  puts "Student names beginning with: (Please enter a letter)"
-  letter = gets.chomp
+#def print(students)
+#  puts "Student names beginning with: (Please enter a letter)"
+#  letter = gets.chomp
+def print_by_name_length(students)
+  puts "Names with maximum length of (please enter a number):"
+  max_length = gets.chomp
   matching_students = 0
   students.each do |student|
-    if student[:name].start_with?(letter.upcase, letter.downcase)
+    if student[:name].length <= max_length.to_i
       puts "#{student[:name]} (#{student[:cohort]} cohort)"
       matching_students += 1
     else
     end
   end
   puts
-  puts "#{matching_students} students' name begins with #{letter}"
+  puts "There are #{matching_students} students whose maximum name's length is #{max_length} characters."
   puts
 end
+
+
+
+
+
 def print_footer(students)
 puts "Overall, we have #{students.count} great students"
 end
 # nothing happens until we call the methods
 students = input_students
 print_header
-print(students)
+print_by_name_length(students)
 print_footer(students)
