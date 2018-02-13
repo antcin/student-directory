@@ -17,7 +17,13 @@ def input_students
   # add the student hash to the array
     students << {name: name, cohort: more_info[:cohort], hobbies: more_info[:hobbies],
                  country: more_info[:country], height: more_info[:height]}
-    puts "Now we have #{students.count} students"
+    #8.9
+    if students.count == 1
+      puts "Now we have #{students.count} student"
+    else
+      puts "Now we have #{students.count} students"
+    end
+    #puts "Now we have #{students.count} students"
     # get another name from the user
     puts "Please enter the name of another student"
     name = gets.chomp.capitalize
