@@ -7,7 +7,7 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp.capitalize
+  name = gets.gsub("\n", "").capitalize
   if !name.empty?
     more_info = info
   end
@@ -25,7 +25,7 @@ def input_students
     #puts "Now we have #{students.count} students"
     # get another name from the user
     puts "Please enter the name of another student"
-    name = gets.chomp.capitalize
+    name = gets.gsub("\n", "").capitalize
     if !name.empty?
       more_info = info
     end
@@ -39,20 +39,20 @@ def info()
   months = ["january", "february", "march", "april", "may", "june", "july",
                     "august", "september", "october", "november", "december"]
   puts "Enter the student's cohort"
-  cohort = gets.chomp
+  cohort = gets.gsub("\n", "")
   while !months.include? cohort.downcase || cohort != "" do
     puts "Please enter a valid month"
-    cohort = gets.chomp
+    cohort = gets.gsub("\n", "")
   end
   if cohort == ""
     cohort = :february
 end
   puts "Enter the student's hobbies separated by a comma"
-  hobbies = gets.chomp
+  hobbies = gets.gsub("\n", "")
   puts "Enter the student's country of origin"
-  country = gets.chomp.capitalize
+  country = gets.gsub("\n", "").capitalize
   puts "Enter the student's height"
-  height = gets.chomp.to_i
+  height = gets.gsub("\n", "").to_i
   return { cohort: cohort.downcase.to_sym, hobbies: hobbies, country: country, height: height }
 end
 
@@ -95,7 +95,7 @@ end
 #8.3
 def print_by_name_length(students)
   puts "Names with maximum length of (please enter a number):".center(@width)
-  max_length = gets.chomp
+  max_length = gets.gsub("\n", "")
   matching_students = 0
   students.each do |student|
     if student[:name].length <= max_length.to_i
@@ -111,7 +111,7 @@ end
 #8.2
 def print_specific_first_letter(students)
   puts "Student names beginning with: (Please enter a letter)".center(@width)
-  letter = gets.chomp
+  letter = gets.gsub("\n", "")
   matching_students = 0
   students.each do |student|
     if student[:name].start_with?(letter.upcase, letter.downcase)
