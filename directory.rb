@@ -29,10 +29,15 @@ def input_students
   students
 end
 
+
+
+
+
 def info()
+  #8.7
   months = ["january", "february", "march", "april", "may", "june", "july",
                     "august", "september", "october", "november", "december"]
-  puts "Enter your cohort"
+  puts "Enter the student's cohort"
   cohort = gets.chomp
   while !months.include? cohort.downcase || cohort != "" do
     puts "Please enter a valid month"
@@ -60,6 +65,23 @@ def print(students)
     puts "Name: #{student[:name]} | Cohort: #{student[:cohort]} | Hobbies: #{student[:hobbies]} | Country of origin: #{student[:country]} | Height: #{student[:height]}".center(@width)
   end
 end
+
+#8.8
+def print_by_cohort(students)
+  if @students.empty?
+    puts "There are no available students"
+  else
+    cohorts = @students.map do |student|
+      student[:cohort]
+  end
+  cohorts.uniq.each do |cohort|
+    puts "#{cohort} cohort".upcase.center(@width)
+      @students.each do |student|
+        puts student[:name] if student[:cohort] == cohort
+      end
+    end
+   end
+ end
 
 #8.4
 def print_with_loop(students)
@@ -115,8 +137,13 @@ end
 def print_footer(students)
 puts "Overall, we have #{students.count} great students".center(@width)
 end
+
+
+
+
 # nothing happens until we call the methods
-students = input_students
+@students = input_students
 print_header
-print(students)
-print_footer(students)
+#print(students)
+print_by_cohort(@students)
+print_footer(@students)
