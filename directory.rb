@@ -136,12 +136,19 @@ def print_footer(students)
 puts "Overall, we have #{students.count} great students".center(@width)
 end
 
-
+#8.12
+def show_students_list(students)
+  if students.length <= 0
+    puts "The student list is empty"
+  else
+    print_header
+    #print(students)
+    print_by_cohort(@students)
+    print_footer(@students)
+  end
+end
 
 
 # nothing happens until we call the methods
 @students = input_students
-print_header
-#print(students)
-print_by_cohort(@students)
-print_footer(@students)
+show_students_list(@students)
