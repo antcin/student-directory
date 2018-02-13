@@ -8,15 +8,14 @@ def input_students
   students = []
   # get the first name
   name = gets.chomp.capitalize
-
   if !name.empty?
     more_info = info
   end
   # while the name is not empty, repeat this code
   while !name.empty? do
   # add the student hash to the array
-    students << {name: name, cohort: more_info[:cohort], hobbies: more_info[:hobbies],
-                 country: more_info[:country], height: more_info[:height]}
+    students << { name: name, cohort: more_info[:cohort], hobbies: more_info[:hobbies],
+                 country: more_info[:country], height: more_info[:height] }
     #8.9
     if students.count == 1
       puts "Now we have #{students.count} student"
@@ -34,10 +33,6 @@ def input_students
   # return the array of students
   students
 end
-
-
-
-
 
 def info()
   #8.7
@@ -58,7 +53,7 @@ end
   country = gets.chomp.capitalize
   puts "Enter the student's height"
   height = gets.chomp.to_i
-  return {cohort: cohort.downcase.to_sym, hobbies: hobbies, country: country, height: height}
+  return { cohort: cohort.downcase.to_sym, hobbies: hobbies, country: country, height: height }
 end
 
 def print_header
@@ -71,23 +66,22 @@ def print(students)
     puts "Name: #{student[:name]} | Cohort: #{student[:cohort]} | Hobbies: #{student[:hobbies]} | Country of origin: #{student[:country]} | Height: #{student[:height]}".center(@width)
   end
 end
-
 #8.8
 def print_by_cohort(students)
   if @students.empty?
     puts "There are no available students"
   else
     cohorts = @students.map do |student|
-      student[:cohort]
+    student[:cohort]
   end
-  cohorts.uniq.each do |cohort|
+    cohorts.uniq.each do |cohort|
     puts "#{cohort} cohort".upcase.center(@width)
-      @students.each do |student|
-        puts student[:name] if student[:cohort] == cohort
-      end
+    @students.each do |student|
+      puts student[:name] if student[:cohort] == cohort
     end
-   end
- end
+    end
+  end
+end
 
 #8.4
 def print_with_loop(students)
@@ -107,7 +101,6 @@ def print_by_name_length(students)
     if student[:name].length <= max_length.to_i
       puts "#{student[:name]} (#{student[:cohort]} cohort)".center(@width)
       matching_students += 1
-    else
     end
   end
   puts
@@ -124,7 +117,6 @@ def print_specific_first_letter(students)
     if student[:name].start_with?(letter.upcase, letter.downcase)
       puts "#{student[:name]} (#{student[:cohort]} cohort)".center(@width)
       matching_students += 1
-    else
     end
   end
   puts
