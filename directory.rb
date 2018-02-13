@@ -1,3 +1,5 @@
+require 'csv'
+
 @students = [] # empty array accessible to\from all methods
 @width = 50
 
@@ -89,14 +91,17 @@ def add_student(name, cohort = :november.capitalize)
 end
 
 def save_students(filename = @default_filename)
-  # open the file for writing
-  file = File.open(filename, "w") do |file|
+  # open the file for writing, use CSV library
+  CSV.open(filename, "wb") do |csv|
+  #file = File.open(filename, "w") do |file|
   # iterate over the array of students
     @students.each do |student|
-      student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+      #student_data = [student[:name], student[:cohort]]
+      #csv_line = student_data.join(",")
+      #file.puts csv_line
+      csv << [student[:name], student[:cohort]]
     end
+    @loaded_filename = filename
   puts
   puts "*** Data saved successfully to #{filename} ***"
   puts
@@ -104,16 +109,31 @@ def save_students(filename = @default_filename)
 end
 
 def load_students(filename = @default_filename)
-  file = File.open(filename, "r") do |file|
-    file.readlines.each do |line|
-      name, cohort = line.chomp.split(',')
+  #file = File.open(filename, "r") do |file|
+  #  file.readlines.each do |line|
+  #    name, cohort = line.chomp.split(',')
+  #    add_student(name, cohort.to_sym)
+  if File.exists?(filename)
+    CSV.foreach(filename) do |row|
+      name, cohort = row
       add_student(name, cohort.to_sym)
-      end
+    end
+    @loaded_filename = filename
    puts
    puts  "*** File loaded successfully ***"
    puts  "*** Using: #{filename}"
    puts
  end
+
+  if filename == @default_filename
+    puts "Default file #{@default_filename} not found"
+    File.write("students.csv", "")
+    @loaded_filename = filename
+    puts "Created new #{@default_filename}"
+  else
+    puts "File #{filename} not found"
+    puts "Using #{@loaded_filename}"
+  end
 end
 
 def try_load_students
@@ -126,10 +146,14 @@ def try_load_students
     puts
     @loaded_filename = @default_filename
     load_students
-  elsif File.exists?(filename)
-    loaded_filename = filename # if it exists
+  #elsif File.exists?(filename)
+    loaded_filename = filename
     load_students(filename)
-    # puts "Loaded #{@students.count} from #{filename}"
+    return
+  end
+  if File.exists?(filename) # if it exists
+    loaded_filename = filename
+    load_students(filename)
   else # if it doesn't exist
     puts "Sorry, #{filename} not found."
     exit # quit the program
