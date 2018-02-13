@@ -1,11 +1,15 @@
 @students = [] # empty array accessible to\from all methods
 @width = 50
+
+@loaded_filename = ""
+@default_filename = "students.csv"
+
 def print_menu
   puts '*** MAIN MENU ***'.center(@width)
   puts "1. Add students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list to file"
+  puts "4. Load the list from file"
   puts "9. Exit" # 9 because we'll be adding more items
 end
 
@@ -25,11 +29,14 @@ def process(selection)
     puts "You have selected to show the students"
     show_students
   when "3"
-    puts "You have saved the list of students to students.csv"
-    save_students
+    puts "Please enter the name of the file you want to save student data to"
+    save_filename = STDIN.gets.chomp
+    save_filename.empty? ? save_students : save_students(save_filename)
   when "4"
-    puts "You have loaded the list of students from students.csv"
-    load_students
+    puts "Please enter the name of the file you want to load student data from"
+    puts "If you leave this field empty, data from students.csv will be loaded"
+    load_filename = STDIN.gets.chomp
+    load_filename.empty? ? load_students : load_students(load_filename)
   when "9"
     puts "You quit the program successfully"
     exit # this will cause the program to terminate
@@ -76,9 +83,14 @@ def show_students
   count_students
 end
 
-def save_students
+# 14.1
+def add_student(name, cohort = :november.capitalize)
+  @students << {name: name, cohort: cohort}
+end
+
+def save_students(filename = @default_filename)
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open(filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -86,20 +98,22 @@ def save_students
     file.puts csv_line
   end
   file.close
+  puts
+  puts "*** Data saved successfully to #{filename} ***"
+  puts
 end
 
-# 14.1
-def add_student(name, cohort = :november.capitalize)
-  @students << {name: name, cohort: cohort}
-end
-
-def load_students(filename = "students.csv")
+def load_students(filename = @default_filename)
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
     add_student(name, cohort.to_sym)
   end
   file.close
+   puts
+   puts  "*** File loaded successfully ***"
+   puts  "*** Using: #{filename}"
+   puts
 end
 
 def try_load_students
@@ -107,17 +121,20 @@ def try_load_students
   # 14.2 - start
   # return if filename.nil? # get out of the method if it isn't given
   if filename.nil?
-    filename = "students.csv"
-  end
-  # 14.2 - end
-  if File.exists?(filename) # if it exists
+    puts
+    puts "Loaded the default file: #{@default_filename}"
+    puts
+    @loaded_filename = @default_filename
+    load_students
+  elsif File.exists?(filename)
+    loaded_filename = filename # if it exists
     load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
+    # puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exist
-    puts "Sorry, #{filename} doesn't exist."
+    puts "Sorry, #{filename} not found."
     exit # quit the program
   end
 end
 # nothing happens until we call the methods
-try_load_students
+#try_load_students
 interactive_menu
