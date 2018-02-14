@@ -34,6 +34,7 @@ at Villains Academy.
 | 5 | [Commit ba19d78](https://github.com/antcin/student-directory/commit/ba19d78d310f2473c8e898a87731281938fa2c43) |
 | 6 | [Commit f597ba1](https://github.com/antcin/student-directory/commit/f597ba135dfa3f55293388a0be8292c71b227f41) |
 | 7 | [Commit dccf5cc](https://github.com/antcin/student-directory/commit/dccf5cccf6c7a7849894920d4b78caac874fc4ab) |
+| 8 | [Commit f7589f0](https://github.com/antcin/student-directory/commit/f7589f005f8e7b450cf53c2f129add026aa712ae) |
 
 
 </td></tr> </table>
