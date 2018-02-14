@@ -8,6 +8,7 @@ at Villains Academy.
 <table>
 <tr><th>Step 8</th><th>Step 14</th></tr>
 <tr><td>
+
 | Exercise | Commit |
 | - | -- |
 | 1 | [Commit 6168348](https://github.com/antcin/student-directory/commit/61683485e95b8c213f0ac89cd1243c77982c184a=) |
