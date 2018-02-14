@@ -4,8 +4,10 @@ The student directory script allows you to manage the list of students enrolled
 at Villains Academy.
 
 ## Exercises ##
-### Step 8 ###
 
+<table>
+<tr><th>Step 8</th><th>Step 14</th></tr>
+<tr><td>
 | Exercise | Commit |
 | - | -- |
 | 1 | [Commit 6168348](https://github.com/antcin/student-directory/commit/61683485e95b8c213f0ac89cd1243c77982c184a=) |
@@ -20,7 +22,8 @@ at Villains Academy.
 | 11 | [Commit 7ffb2d0](https://github.com/antcin/student-directory/commit/7ffb2d0a3c5872588099a5ff32cbf0dcd931b1b3) |
 | 12 | [Commit 538d76f](https://github.com/antcin/student-directory/commit/538d76ffebb9d2a596a01f7eb4cacb1c56159f91) |
 
-### Step 14 ###
+</td><td>
+
 | Exercise | Commit |
 | - | -- |
 | 1 | [Commit 436b379](https://github.com/antcin/student-directory/commit/436b379cbafeaeb7895e071b739ea3ab2828cc5c) |
@@ -30,6 +33,9 @@ at Villains Academy.
 | 5 | [Commit ba19d78](https://github.com/antcin/student-directory/commit/ba19d78d310f2473c8e898a87731281938fa2c43) |
 | 6 | [Commit f597ba1](https://github.com/antcin/student-directory/commit/f597ba135dfa3f55293388a0be8292c71b227f41) |
 | 7 | [Commit dccf5cc](https://github.com/antcin/student-directory/commit/dccf5cccf6c7a7849894920d4b78caac874fc4ab) |
+
+
+</td></tr> </table>
 
 ## How to use ##
 
