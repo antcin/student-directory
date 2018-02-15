@@ -96,6 +96,7 @@ def save_students(filename = @default_filename)
 end
 
 def load_students(filename = @default_filename)
+  @students = []
   if File.exists?(filename)
     CSV.foreach(filename) do |row|
       name, cohort = row
@@ -106,9 +107,7 @@ def load_students(filename = @default_filename)
     puts "*** File loaded successfully ***"
     puts "*** Using: #{filename}"
     puts
- end
-
-  if filename == @default_filename
+  elsif filename == @default_filename
     puts "Default file #{@default_filename} not found"
     File.write("students.csv", "")
     @loaded_filename = filename
